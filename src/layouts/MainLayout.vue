@@ -1,6 +1,9 @@
 <script setup>
 import { onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
+// composables
+import { apiAddr, checkAddr } from 'src/composables/useAddress'
+import { socket, initSocket } from 'src/composables/useSocketIO'
 // import { socket } from 'src/boot/socketio'
 // import {
 //   playerState,
@@ -13,10 +16,13 @@ import { useRouter } from 'vue-router'
 // import HeaderMenu from 'src/components/layout/headerMenus.vue'
 // import HeaderMenuSmall from 'src/components/layout/headerMenuSmall'
 // // import UserStatus from "components/layout/headerUserStatus.vue";
-// import PlayerControls from 'components/controls/playerControls.vue'
+import PlayerControls from 'components/controls/PlayerControls.vue'
+
 const router = useRouter()
-onBeforeMount(() => {
-  console.log(window.location.href)
+onBeforeMount(async () => {
+  apiAddr.value = await checkAddr()
+  console.log(apiAddr.value)
+  initSocket(apiAddr.value)
 })
 // onBeforeMount(() => {
 //   socket.on('connect', () => {
@@ -64,7 +70,7 @@ onBeforeMount(() => {
     </q-page-container>
 
     <q-footer class="footer">
-      <!-- <PlayerControls /> -->
+      <PlayerControls />
     </q-footer>
   </q-layout>
 </template>
