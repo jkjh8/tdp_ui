@@ -1,9 +1,14 @@
 <script setup>
 import { onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
+// components
+import MenuFull from 'src/components/menu/menuFull'
+import MenuSmall from 'src/components/menu/menuSmall'
+
 // composables
 import { apiAddr, checkAddr } from 'src/composables/useAddress'
 import { socket, initSocket } from 'src/composables/useSocketIO'
+import { initAxios } from 'src/composables/useAxios'
 // import { socket } from 'src/boot/socketio'
 // import {
 //   playerState,
@@ -21,8 +26,8 @@ import PlayerControls from 'components/controls/PlayerControls.vue'
 const router = useRouter()
 onBeforeMount(async () => {
   apiAddr.value = await checkAddr()
-  console.log(apiAddr.value)
   initSocket(apiAddr.value)
+  initAxios(apiAddr.value)
 })
 // onBeforeMount(() => {
 //   socket.on('connect', () => {
@@ -52,14 +57,14 @@ onBeforeMount(async () => {
 
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header class="header row justify-between items-center">
+    <q-header class="header row no-wrap justify-between items-center">
       <div class="row q-gutter-x-sm pointer" @click="router.push('/')">
         <q-icon name="svguse:icons.svg#logo" size="md" />
         <div class="header-font">Player Controls</div>
       </div>
       <!-- Menu Components -->
-      <HeaderMenu class="gt-xs" />
-      <HeaderMenuSmall class="lt-sm" />
+      <MenuFull class="gt-xs" />
+      <MenuSmall class="lt-sm" />
       <!-- <UserStatus /> -->
     </q-header>
 

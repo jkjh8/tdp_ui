@@ -1,7 +1,11 @@
 import axios from 'axios'
 
-const api = axios.create({
-  baseURL: window.location.href + '/api/'
-})
+let api
 
-export { api }
+const initAxios = (addr) => {
+  api = axios.create({
+    baseURL: addr + '/api/'
+  })
+}
+
+export { api, initAxios }
