@@ -4,8 +4,8 @@ import { ms, m, s } from 'time-convert'
 const pTime = ref({
   duration: 0,
   currentTime: 0,
-  durationMS: '00:00',
-  currentTimeMS: '00:00'
+  durationMS: '00:00:00',
+  currentTimeMS: '00:00:00'
 })
 
 const msToMS = (time) => {
@@ -18,4 +18,15 @@ const msToMS = (time) => {
     .join(':')
 }
 
-export { pTime, msToMS }
+const msToHMS = (time) => {
+  return ms
+    .to(
+      h,
+      m,
+      s
+    )(time)
+    .mapk((n) => (n < 10 ? '0' + n : n.toString()))
+    .join(':')
+}
+
+export { pTime, msToMS, msToHMS }
