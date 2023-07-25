@@ -1,7 +1,8 @@
 import { ref } from 'vue'
-import { api } from 'src/composables/useAxios'
+import { api } from 'src/boot/axios'
 
 const files = ref([])
+const defaultPath = ref('')
 const avExt = ['.mp4', '.mp3', 'webm', 'mkv', 'wav', 'flac', 'aac']
 const filesCol = [
   { name: 'name', label: 'Name', field: 'name', align: 'center', sortable: true },
@@ -14,4 +15,11 @@ const simpleFilesCol = [
   { name: 'actions', label: 'Actions', align: 'center' }
 ]
 
-export { files, avExt, filesCol, simpleFilesCol }
+const fnGetFiles = async () => {
+  const r = await api.get('/files')
+  files.value = r.data.files
+  defaultPath.value = r.data.defaultpath
+  return r
+}
+
+export { files, defaultPath, avExt, filesCol, simpleFilesCol, fnGetFiles }

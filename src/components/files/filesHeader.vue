@@ -1,9 +1,10 @@
 <script setup>
-import { onBeforeMount } from 'vue'
 import { useQuasar } from 'quasar'
 // components
 import FilesUploader from '/src/components/dialogs/filesUploader'
 import DelayedTooltip from '/src/components/delayedTooltip'
+//composables
+import { fnGetFiles } from '/src/composables/useFiles'
 
 const $q = useQuasar()
 

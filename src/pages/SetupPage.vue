@@ -5,7 +5,7 @@ import { onBeforeMount } from 'vue'
 import SetupHeader from 'src/components/setup/setupHeader'
 // import { playerState } from 'src/composables/usePlayerState'
 // composables
-import { api } from 'src/composables/useAxios'
+import { api } from 'src/boot/axios'
 // import SelectAudioDevice from 'src/components/setup/selectAudioDevice'
 // import SetupShowLogo from 'src/components/setup/showLogo'
 // import SetupFullscreen from 'src/components/setup/startWithFullscreen'

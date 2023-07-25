@@ -6,10 +6,8 @@ import MenuFull from 'src/components/menu/menuFull'
 import MenuSmall from 'src/components/menu/menuSmall'
 
 // composables
-import { apiAddr, checkAddr } from 'src/composables/useAddress'
+import { addr } from 'src/boot/axios'
 import { socket, initSocket } from 'src/composables/useSocketIO'
-import { initAxios } from 'src/composables/useAxios'
-// import { socket } from 'src/boot/socketio'
 // import {
 //   playerState,
 //   playerTimes,
@@ -18,41 +16,14 @@ import { initAxios } from 'src/composables/useAxios'
 //   device
 // } from 'src/composables/usePlayerState'
 
-// import HeaderMenu from 'src/components/layout/headerMenus.vue'
-// import HeaderMenuSmall from 'src/components/layout/headerMenuSmall'
 // // import UserStatus from "components/layout/headerUserStatus.vue";
 import PlayerControls from 'components/controls/PlayerControls.vue'
 
 const router = useRouter()
 onBeforeMount(async () => {
-  apiAddr.value = await checkAddr()
-  initSocket(apiAddr.value)
-  initAxios(apiAddr.value)
+  // initialize socket io
+  await initSocket(addr)
 })
-// onBeforeMount(() => {
-//   socket.on('connect', () => {
-//     console.log(`connecting to socket.io id=${socket.id}`)
-//   })
-
-//   socket.on('playerstate', (args) => {
-//     playerState.value = { ...args }
-//   })
-//   socket.on('status', (args) => {
-//     playerState.value = { ...args }
-//   })
-//   socket.on('times', (args) => {
-//     playerTimes.value = { ...args }
-//   })
-//   socket.on('devices', (args) => {
-//     devices.value = JSON.parse(args).filter((d) => d.kind == 'audiooutput')
-//   })
-//   socket.on('device', (args) => {
-//     device.value = args.device ? args.device : 'default'
-//   })
-//   socket.on('fullscreen', (args) => {
-//     isFullscreen.value = args.fullscreen
-//   })
-// })
 </script>
 
 <template>

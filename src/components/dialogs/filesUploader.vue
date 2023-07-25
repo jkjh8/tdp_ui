@@ -3,7 +3,7 @@ import { useQuasar, useDialogPluginComponent } from 'quasar'
 // components
 import DelayedTooltip from '../delayedTooltip'
 // conposables
-import { apiAddr } from '/src/composables/useAddress.js'
+import { addr } from '/src/boot/axios'
 
 // call functions
 const $q = useQuasar()
@@ -11,7 +11,7 @@ const { dialogRef, onDialogOK, onDialogCancel } = useDialogPluginComponent()
 
 // get url
 const getUrl = () => {
-  return `${apiAddr.value}/api/files/upload`
+  return `${addr}/api/files/upload`
 }
 
 const onRejected = (rejectedEntries) => {

@@ -1,11 +1,17 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-// import { currentPath } from 'src/composables/useFiles'
+import { ref, onBeforeMount } from 'vue'
 
 // components
 import FilesHeader from 'src/components/files/FilesHeader'
 import FilesList from 'src/components/files/FilesList'
 // import simpleFileList from 'src/components/files/simpleListFiles'
+
+// composables
+import { fnGetFiles } from 'src/composables/useFiles'
+
+onBeforeMount(async () => {
+  console.log(await fnGetFiles())
+})
 </script>
 
 <template>
