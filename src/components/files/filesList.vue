@@ -4,7 +4,7 @@ import { format } from 'quasar'
 import DelayedTooltip from '/src/components/delayedTooltip'
 // composables
 import { files, avExt, filesCol } from '/src/composables/useFiles.js'
-
+import { loadFile } from '/src/composables/usePlayer'
 const { humanStorageSize } = format
 </script>
 
@@ -23,14 +23,21 @@ const { humanStorageSize } = format
           {{ props.row.name }}
         </q-td>
         <q-td key="type" :props="props">
-          {{ props.row.ext }}
+          {{ props.row.ext.substring(1).toUpperCase() }}
         </q-td>
         <q-td key="size" :props="props">
           {{ humanStorageSize(props.row.size) }}
         </q-td>
         <q-td key="actions" :props="props">
           <div>
-            <q-btn round flat icon="input">
+            <q-btn
+              round
+              flat
+              icon="input"
+              size="sm"
+              color="primary"
+              @click="loadFile(props.row)"
+            >
               <DelayedTooltip msg="Load" />
             </q-btn>
           </div>

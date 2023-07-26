@@ -30,7 +30,7 @@ const fnOpenfilesUploadDialog = () => {
         flat
         round
         color="primary"
-        icon="upload_file"
+        icon="cloud_uploadf"
         @click="fnOpenfilesUploadDialog"
       >
         <DelayedTooltip msg="Upload Files" />
