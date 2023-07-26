@@ -1,5 +1,11 @@
 <script setup>
+import { format } from 'quasar'
+// components
+import DelayedTooltip from '/src/components/delayedTooltip'
+// composables
 import { files, avExt, filesCol } from '/src/composables/useFiles.js'
+
+const { humanStorageSize } = format
 </script>
 
 <template>
@@ -11,6 +17,26 @@ import { files, avExt, filesCol } from '/src/composables/useFiles.js'
     hide-pagination
     wrap-cells
   >
+    <template #body="props">
+      <q-tr :props="props">
+        <q-td key="name" :props="props">
+          {{ props.row.name }}
+        </q-td>
+        <q-td key="type" :props="props">
+          {{ props.row.ext }}
+        </q-td>
+        <q-td key="size" :props="props">
+          {{ humanStorageSize(props.row.size) }}
+        </q-td>
+        <q-td key="actions" :props="props">
+          <div>
+            <q-btn round flat icon="input">
+              <DelayedTooltip msg="Load" />
+            </q-btn>
+          </div>
+        </q-td>
+      </q-tr>
+    </template>
   </q-table>
 </template>
 

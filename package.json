@@ -2,7 +2,7 @@
   "name": "tdp-ui",
   "version": "0.0.1",
   "description": "player from web",
-  "productName": "plyaer",
+  "productName": "player remote",
   "author": "jkjh8 <jkjh82@naver.com>",
   "private": true,
   "scripts": {

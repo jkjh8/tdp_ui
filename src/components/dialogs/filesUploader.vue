@@ -23,9 +23,10 @@ const onRejected = (rejectedEntries) => {
 </script>
 
 <template>
-  <q-dialog ref="dialogRef">
+  <q-dialog ref="dialogRef" persistent>
     <q-uploader
       class="uploader"
+      multiple
       :url="getUrl"
       color="blue-grey-8"
       accept="image/*, video/*, audio/*"

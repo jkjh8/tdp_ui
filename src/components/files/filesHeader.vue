@@ -11,6 +11,8 @@ const $q = useQuasar()
 const fnOpenfilesUploadDialog = () => {
   $q.dialog({
     component: FilesUploader
+  }).onOk(() => {
+    fnGetFiles()
   })
 }
 </script>
@@ -24,7 +26,13 @@ const fnOpenfilesUploadDialog = () => {
     </div>
     <!-- back -->
     <div>
-      <q-btn flat round color="primary" icon="upload" @click="fnOpenfilesUploadDialog">
+      <q-btn
+        flat
+        round
+        color="primary"
+        icon="upload_file"
+        @click="fnOpenfilesUploadDialog"
+      >
         <DelayedTooltip msg="Upload Files" />
       </q-btn>
     </div>

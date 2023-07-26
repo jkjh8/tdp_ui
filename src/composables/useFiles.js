@@ -19,6 +19,7 @@ const fnGetFiles = async () => {
   const r = await api.get('/files')
   files.value = r.data.files
   defaultPath.value = r.data.defaultpath
+  console.log('files updated: ', files.value)
   return r
 }
 
