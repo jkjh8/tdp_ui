@@ -1,7 +1,6 @@
 import { io } from 'socket.io-client'
 import { pStatus } from './useStatus'
-import { pTime } from './useTime'
-
+import { pTime, updateTimes } from './useTime'
 let socket
 
 const initSocket = (address) => {
@@ -14,8 +13,8 @@ const initSocket = (address) => {
     pStatus.value = { ...status }
     console.log('pStatus updated', pStatus.value)
   })
-  socket.on('Ptime', (time) => {
-    pTime.value = { ...time }
+  socket.on('pTimes', (time) => {
+    updateTimes(time)
   })
   socket.on('connect', () => {
     console.log(`connecting to socket.io id=${socket.id}`)

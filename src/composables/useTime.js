@@ -1,5 +1,4 @@
 import { ref } from 'vue'
-import { ms, m, s } from 'time-convert'
 
 const pTime = ref({
   duration: 0,
@@ -8,25 +7,30 @@ const pTime = ref({
   currentTimeMS: '00:00:00'
 })
 
-const msToMS = (time) => {
-  return ms
-    .to(
-      m,
-      s
-    )(time)
-    .map((n) => (n < 10 ? '0' + n : n.toString()))
-    .join(':')
+const padTo2Digits = (num) => {
+  return num.toString().padStart(2, '0')
 }
 
-const msToHMS = (time) => {
-  return ms
-    .to(
-      h,
-      m,
-      s
-    )(time)
-    .mapk((n) => (n < 10 ? '0' + n : n.toString()))
-    .join(':')
+const msToHMS = (milliseconds) => {
+  let seconds = Math.floor(milliseconds)
+  let minutes = Math.floor(seconds / 60)
+  let hours = Math.floor(minutes / 60)
+
+  seconds = seconds % 60
+  minutes = minutes % 60
+  hours = hours % 24
+
+  return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`
 }
 
-export { pTime, msToMS, msToHMS }
+const updateTimes = (time) => {
+  const durationMS = msToHMS(time.duration)
+  const currentTimeMS = msToHMS(time.currentTime)
+  pTime.value = {
+    ...time,
+    durationMS,
+    currentTimeMS
+  }
+}
+
+export { pTime, msToHMS, updateTimes }

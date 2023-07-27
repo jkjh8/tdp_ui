@@ -9,11 +9,10 @@ import { pTime } from 'src/composables/useTime'
       :min="0"
       :max="pTime.duration"
       :step="0.01"
+      :label-value="pTime.currentTimeMS"
       label
     />
-    <div class="text-caption">
-      {{ pTime.currentTimeMS }}/{{ pTime.durationMS }}
-    </div>
+    <div class="text-caption">{{ pTime.currentTimeMS }}/{{ pTime.durationMS }}</div>
   </div>
 </template>
 
