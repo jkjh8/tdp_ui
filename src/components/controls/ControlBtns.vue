@@ -1,5 +1,8 @@
 <script setup>
+// components
 import DelayedTooltip from '/src/components/delayedTooltip'
+// composables
+import { fnPlay, fnPause } from '/src/composables/usePlayer'
 </script>
 
 <template>
@@ -10,7 +13,7 @@ import DelayedTooltip from '/src/components/delayedTooltip'
       </q-btn>
     </div>
     <div>
-      <q-btn flat round icon="play_arrow">
+      <q-btn flat round icon="play_arrow" @click="fnPlay">
         <DelayedTooltip msg="Play" />
       </q-btn>
     </div>
