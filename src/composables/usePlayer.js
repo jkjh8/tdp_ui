@@ -2,13 +2,13 @@ import { api } from '/src/boot/axios'
 import { socket } from 'src/composables/useSocketIO'
 
 const fnLoadFile = (file) => {
-  socket.emit('pCommand', { command: 'fnLoadfile', values: file })
+  socket.emit('pCommands', { command: 'loadfile', values: file })
 }
 
 const fnPlay = () => {
-  socket.emit('pCommand', { command: 'play' })
+  socket.emit('pCommands', { command: 'play' })
 }
 
-const fnPause = () => socket.emit('pCommand', { command: 'pause' })
+const fnPause = () => socket.emit('pCommands', { command: 'pause' })
 
 export { fnLoadFile, fnPlay, fnPause }

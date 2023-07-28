@@ -2,6 +2,7 @@
 // components
 import DelayedTooltip from '/src/components/delayedTooltip'
 // composables
+import { pStatus } from '/src/composables/useStatus'
 import { fnPlay, fnPause } from '/src/composables/usePlayer'
 </script>
 
@@ -12,11 +13,32 @@ import { fnPlay, fnPause } from '/src/composables/usePlayer'
         <DelayedTooltip msg="Rewind" />
       </q-btn>
     </div>
+    <!-- play button -->
     <div>
-      <q-btn flat round icon="play_arrow" @click="fnPlay">
+      <q-btn
+        v-if="pStatus.status.status != 'playing'"
+        flat
+        round
+        size="lg"
+        color="primary"
+        icon="play_arrow"
+        @click="fnPlay"
+      >
         <DelayedTooltip msg="Play" />
       </q-btn>
+      <q-btn
+        v-else
+        flat
+        round
+        size="lg"
+        color="secondary"
+        icon="pause"
+        @click="fnPause"
+      >
+        <DelayedTooltip msg="Pause" />
+      </q-btn>
     </div>
+    <!--  -->
     <div>
       <q-btn flat round icon="fast_forward">
         <DelayedTooltip msg="FastForward" />
