@@ -5,10 +5,22 @@ const fnLoadFile = (file) => {
   socket.emit('pCommands', { command: 'loadfile', values: file })
 }
 
-const fnPlay = () => {
-  socket.emit('pCommands', { command: 'play' })
+const fnPlay = async () => {
+  try {
+    const r = await api.get('/player/play')
+    console.log('Play Btn Result: ', r)
+  } catch (err) {
+    console.error('Play Btn Error: ', err)
+  }
 }
 
-const fnPause = () => socket.emit('pCommands', { command: 'pause' })
+const fnPause = async () => {
+  try {
+    const r = await api.get('/player/pause')
+    console.log('Pause Btn Result: ', r)
+  } catch (err) {
+    console.error('Pause Btn Result: ', err)
+  }
+}
 
 export { fnLoadFile, fnPlay, fnPause }
