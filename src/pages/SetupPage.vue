@@ -51,7 +51,7 @@ import { api } from 'src/boot/axios'
         <!-- device control port(web port) -->
         <div class="row no-wrap justify-between items-center">
           <div class="text-weight-bold">Control Port</div>
-          <div class="row no-wrap items-center">
+          <div class="row no-wrap items-center q-gutter-x-xs">
             <div>{{ pStatus.webport }}</div>
             <q-btn round flat color="primary" size="sm" icon="refresh"></q-btn>
           </div>
