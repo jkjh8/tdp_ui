@@ -4,12 +4,12 @@ const pStatus = ref({
   mode: 'single',
   uuid: '',
   name: '',
-  ipaddress: '',
-  macaddress: '',
+  nics: [],
   webport: 3030,
   file: {
+    type: '',
     name: '',
-    type: ''
+    size: 0
   },
   status: {
     status: '',
@@ -18,7 +18,17 @@ const pStatus = ref({
   playlist: {
     name: '',
     list: []
-  }
+  },
+  device: {
+    audiocurrentdevice: '',
+    audiodevicelist: [],
+    width: 800,
+    height: 600
+  },
+  fullscreen: false,
+  showlogo: true,
+  bgColor: '#fff',
+  recentlyFile: []
 })
 
 const pTime = ref({

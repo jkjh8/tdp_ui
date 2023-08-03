@@ -1,5 +1,7 @@
 <script setup>
 import { onBeforeMount } from 'vue'
+
+import AudioDevices from 'src/components/setup/audioDevices'
 import { pStatus } from 'src/composables/useStatus.js'
 // components
 import SetupHeader from 'src/components/setup/setupHeader'
@@ -26,12 +28,17 @@ import { api } from 'src/boot/axios'
         <!-- device name -->
         <div class="row no-wrap justify-between items-center">
           <div class="text-weight-bold">NAME</div>
-          <div>{{ pStatus.name ? pStatus.name : 'No Name' }}</div>
+          <div class="row no-wrap items-center">
+            <div>
+              {{ pStatus.name ? pStatus.name : 'No Name' }}
+            </div>
+            <q-btn round flat color="primary" size="sm" icon="edit"></q-btn>
+          </div>
         </div>
         <!-- device uuid -->
         <div class="row no-wrap justify-between items-center">
           <div class="text-weight-bold">Device ID</div>
-          <div class="row no-wrap items-center q-gutter-x-xs">
+          <div class="row no-wrap items-center">
             <div>
               {{ pStatus.uuid ? pStatus.uuid : 'No ID' }}
             </div>
@@ -51,12 +58,13 @@ import { api } from 'src/boot/axios'
         <!-- device control port(web port) -->
         <div class="row no-wrap justify-between items-center">
           <div class="text-weight-bold">Control Port</div>
-          <div class="row no-wrap items-center q-gutter-x-xs">
+          <div class="row no-wrap items-center">
             <div>{{ pStatus.webport }}</div>
-            <q-btn round flat color="primary" size="sm" icon="refresh"></q-btn>
+            <q-btn round flat color="primary" size="sm" icon="edit"></q-btn>
           </div>
         </div>
-        <div>audio device</div>
+        <!-- Audio Device Select -->
+        <AudioDevices />
         <div>show logo</div>
         <div>update logo</div>
         <div>start at fullscreen</div>
