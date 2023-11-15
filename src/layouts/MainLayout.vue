@@ -8,20 +8,12 @@ import MenuSmall from 'src/components/menu/menuSmall'
 // composables
 import { addr } from 'src/boot/axios'
 import { socket, initSocket } from 'src/composables/useSocketIO'
-// import {
-//   playerState,
-//   playerTimes,
-//   isFullscreen,
-//   devices,
-//   device
-// } from 'src/composables/usePlayerState'
-
-// // import UserStatus from "components/layout/headerUserStatus.vue";
 import PlayerControls from 'components/controls/PlayerControls.vue'
 
 const router = useRouter()
 onBeforeMount(async () => {
   // initialize socket io
+  console.log('init socket io', addr)
   await initSocket(addr)
 })
 </script>

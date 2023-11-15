@@ -3,7 +3,7 @@
 import DelayedTooltip from '/src/components/delayedTooltip'
 // composables
 import { pStatus } from '/src/composables/useStatus'
-import { fnPlay, fnPause } from '/src/composables/usePlayer'
+import { fnPlay, fnPause, setFullscreen } from '/src/composables/usePlayer'
 </script>
 
 <template>
@@ -43,8 +43,17 @@ import { fnPlay, fnPause } from '/src/composables/usePlayer'
       <q-btn flat round icon="fast_forward">
         <DelayedTooltip msg="FastForward" />
       </q-btn>
-      <q-btn flat round icon="fullscreen">
-        <DelayedTooltip msg="Fullscreen" />
+      <q-btn
+        v-if="!pStatus.fullscreen"
+        flat
+        round
+        icon="fullscreen"
+        @click="setFullscreen(true)"
+      >
+        <DelayedTooltip msg="Enter Fullscreen" />
+      </q-btn>
+      <q-btn v-else flat round icon="fullscreen_exit" @click="setFullscreen(false)">
+        <DelayedTooltip msg="Leave Fullscreen" />
       </q-btn>
     </div>
   </div>

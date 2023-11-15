@@ -65,7 +65,14 @@ import { api } from 'src/boot/axios'
         </div>
         <!-- Audio Device Select -->
         <AudioDevices />
-        <div>show logo</div>
+        <div class="row no-wrap justify-between items-center">
+          <div class="text-weight-bold">Show Logo</div>
+          <q-toggle v-model="pStatus.showlogo" />
+        </div>
+        <div class="row no-wrap justify-between items-center">
+          <div class="text-weight-bold">Start At Fullscreen</div>
+          <q-toggle v-model="pStatus.startatfullscreen" />
+        </div>
         <div>update logo</div>
         <div>start at fullscreen</div>
         <!-- <SelectAudioDevice />
