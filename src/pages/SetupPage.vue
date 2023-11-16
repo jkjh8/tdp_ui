@@ -2,7 +2,7 @@
 import { onBeforeMount } from 'vue'
 
 import AudioDevices from 'src/components/setup/audioDevices'
-import { pStatus } from 'src/composables/useStatus.js'
+import { pStatus, updatePlayerStatus } from 'src/composables/useStatus.js'
 // components
 import SetupHeader from 'src/components/setup/setupHeader'
 // import { playerState } from 'src/composables/usePlayerState'
@@ -16,6 +16,10 @@ import { api } from 'src/boot/axios'
 //   const r = await api.get('/setup/updatesetup')
 //   playerState.value = { ...r.data.value }
 // })
+
+async function updateValue() {
+  const r = await api.post('/setup', { ...pStatus.value })
+}
 </script>
 
 <template>
@@ -65,16 +69,27 @@ import { api } from 'src/boot/axios'
         </div>
         <!-- Audio Device Select -->
         <AudioDevices />
+        <!-- show logo -->
         <div class="row no-wrap justify-between items-center">
           <div class="text-weight-bold">Show Logo</div>
-          <q-toggle v-model="pStatus.showlogo" />
+          <q-toggle v-model="pStatus.showlogo" @update:model-value="updateValue" />
         </div>
+        <!-- start at fullscreen -->
         <div class="row no-wrap justify-between items-center">
           <div class="text-weight-bold">Start At Fullscreen</div>
-          <q-toggle v-model="pStatus.startatfullscreen" />
+          <q-toggle
+            v-model="pStatus.startatfullscreen"
+            @update:model-value="updateValue"
+          />
         </div>
-        <div>update logo</div>
-        <div>start at fullscreen</div>
+        <!-- play direct -->
+        <div class="row no-wrap justify-between items-center">
+          <div class="text-weight-bold">Load and Play</div>
+          <q-toggle
+            v-model="pStatus.loadandplay"
+            @update:model-value="updateValue"
+          />
+        </div>
         <!-- <SelectAudioDevice />
         <SetupShowLogo />
         <SetupFullscreen /> -->

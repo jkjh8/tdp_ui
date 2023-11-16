@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client'
-import { pStatus } from './useStatus'
+import { pStatus, updatePlayerStatus } from './useStatus'
 import { pTime, updateTimes } from './useTime'
 let socket
 
@@ -10,7 +10,7 @@ const initSocket = (address) => {
     autoConnect: true
   })
   socket.on('pStatus', (status) => {
-    pStatus.value = { ...status }
+    updatePlayerStatus(status)
     console.log('pStatus updated', pStatus.value)
   })
   socket.on('pTimes', (time) => {

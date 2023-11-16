@@ -38,4 +38,8 @@ const pTime = ref({
   currentTimeMS: '00:00'
 })
 
-export { pStatus, pTime }
+const updatePlayerStatus = (status) => {
+  pStatus.value = { ...pStatus.value, ...status }
+}
+
+export { pStatus, pTime, updatePlayerStatus }

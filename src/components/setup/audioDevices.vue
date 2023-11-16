@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
-import { pStatus } from 'src/composables/useStatus'
+import { pStatus, updatePlayerStatus } from 'src/composables/useStatus'
 import { api } from 'boot/axios'
 
 const selected = ref('')
@@ -13,6 +13,11 @@ const displayLabel = () => {
   }
   return ''
 }
+
+const updateDevice = async (value) => {
+  const r = await api.put('/setup/device', { device: value })
+}
+
 onBeforeMount(async () => {
   const r = await api.get('/player')
   pStatus.value = r.data.status
@@ -33,6 +38,7 @@ onBeforeMount(async () => {
         option-value="deviceId"
         :display-value="displayLabel()"
         emit-value
+        @update:model-value="updateDevice"
       ></q-select>
     </div>
   </div>

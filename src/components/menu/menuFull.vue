@@ -6,7 +6,7 @@ const router = useRouter()
 
 <template>
   <div class="q-gutter-x-md" style="padding-top: 5px">
-    <q-btn
+    <!-- <q-btn
       :class="
         router.currentRoute.value.path === '/playlist'
           ? 'bg-grey-2 text-bold'
@@ -17,7 +17,7 @@ const router = useRouter()
       to="/playlist"
     >
       <div>PLAYLIST</div>
-    </q-btn>
+    </q-btn> -->
 
     <q-btn
       :class="
