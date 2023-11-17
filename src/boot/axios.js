@@ -9,10 +9,7 @@ if (process.env.NODE_ENV !== 'production') {
   console.log('Server Address: ' + devServerAddr)
   addr = devServerAddr
 } else {
-  addr = window.location.href
-  if (addr.charAt(addr.length - 1) === '/') {
-    addr = addr.slice(0, -1)
-  }
+  addr = window.location.origin
   console.log('Node ENV: Production Mode')
   console.log('Server Address: ' + addr)
 }

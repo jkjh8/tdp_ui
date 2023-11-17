@@ -28,7 +28,7 @@ onMounted(() => {
       </q-card-section>
       <q-card-section>
         <div class="q-px-sm">
-          <q-input v-model="port" dense outlined label="Port" />
+          <q-input v-model="port" dense outlined label="Port" type="number" />
         </div>
       </q-card-section>
       <q-card-actions align="right">
