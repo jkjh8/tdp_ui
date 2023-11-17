@@ -4,7 +4,9 @@ import { onBeforeMount } from 'vue'
 import AudioDevices from 'src/components/setup/audioDevices'
 import { pStatus, updatePlayerStatus } from 'src/composables/useStatus.js'
 // components
-import SetupHeader from 'src/components/setup/setupHeader'
+import IPaddressTab from 'src/components/setup/ipaddressTab'
+import WebPort from 'src/components/setup/webPortSetup'
+import ControlPort from 'src/components/setup/tpcPortSetup'
 // import { playerState } from 'src/composables/usePlayerState'
 // composables
 import { api } from 'src/boot/axios'
@@ -26,47 +28,21 @@ async function updateValue() {
   <div class="q-pa-md">
     <q-card class="bg-grey-1" flat>
       <q-card-section>
-        <SetupHeader />
+        <div class="row justify-between">
+          <!-- front -->
+          <div class="row no-wrap items-center q-gutter-x-sm">
+            <q-icon color="grey-8" size="sm" name="settings" />
+            <div>Device Setup</div>
+          </div>
+        </div>
       </q-card-section>
       <q-card-section class="q-px-lg q-gutter-y-sm">
-        <!-- device name -->
-        <div class="row no-wrap justify-between items-center">
-          <div class="text-weight-bold">NAME</div>
-          <div class="row no-wrap items-center">
-            <div>
-              {{ pStatus.name ? pStatus.name : 'No Name' }}
-            </div>
-            <q-btn round flat color="primary" size="sm" icon="edit"></q-btn>
-          </div>
-        </div>
-        <!-- device uuid -->
-        <div class="row no-wrap justify-between items-center">
-          <div class="text-weight-bold">Device ID</div>
-          <div class="row no-wrap items-center">
-            <div>
-              {{ pStatus.uuid ? pStatus.uuid : 'No ID' }}
-            </div>
-            <q-btn round flat color="primary" size="sm" icon="refresh"></q-btn>
-          </div>
-        </div>
         <!-- device ip address list -->
-        <div class="row no-wrap justify-between items-start">
-          <div class="text-weight-bold">IP Address</div>
-          <div>
-            <div v-for="(item, idx) in pStatus.nics" :key="idx">
-              <div class="text-body text-blue-10">IPv4: {{ item.ipv4 }}</div>
-              <div class="text-caption">MAC: {{ item.mac }}</div>
-            </div>
-          </div>
-        </div>
+        <IPaddressTab />
         <!-- device control port(web port) -->
-        <div class="row no-wrap justify-between items-center">
-          <div class="text-weight-bold">Control Port</div>
-          <div class="row no-wrap items-center">
-            <div>{{ pStatus.webport }}</div>
-            <q-btn round flat color="primary" size="sm" icon="edit"></q-btn>
-          </div>
-        </div>
+        <WebPort />
+        <!-- device control port(tcp port) -->
+        <ControlPort />
         <!-- Audio Device Select -->
         <AudioDevices />
         <!-- show logo -->
