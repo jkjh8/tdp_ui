@@ -3,7 +3,7 @@
 import DelayedTooltip from '/src/components/delayedTooltip'
 // composables
 import { pStatus } from '/src/composables/useStatus'
-import { fnPlay, fnPause, setFullscreen } from '/src/composables/usePlayer'
+import { fnPlay, fnPause, fnStop, setFullscreen } from '/src/composables/usePlayer'
 </script>
 
 <template>
@@ -37,7 +37,12 @@ import { fnPlay, fnPause, setFullscreen } from '/src/composables/usePlayer'
       >
         <DelayedTooltip msg="Pause" />
       </q-btn>
+      <!-- stop -->
+      <q-btn flat round size="lg" color="red-10" icon="stop" @click="fnStop">
+        <DelayedTooltip msg="Stop" />
+      </q-btn>
     </div>
+
     <!--  -->
     <div>
       <q-btn flat round icon="fast_forward">

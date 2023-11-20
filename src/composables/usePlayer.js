@@ -10,7 +10,6 @@ const fnPlay = async () => {
   try {
     socket.emit('pCommands', { command: 'play' })
     // const r = await api.get('/player/play')
-    console.log('Play Btn Result: ', r)
   } catch (err) {
     console.error('Play Btn Error: ', err)
   }
@@ -20,14 +19,17 @@ const fnPause = async () => {
   try {
     // const r = await api.get('/player/pause')
     socket.emit('pCommands', { command: 'pause' })
-    console.log('Pause Btn Result: ', r)
   } catch (err) {
     console.error('Pause Btn Result: ', err)
   }
+}
+
+const fnStop = () => {
+  socket.emit('pCommands', { command: 'stop' })
 }
 
 const setFullscreen = (value) => {
   socket.emit('pCommands', { command: 'fullscreen', value })
 }
 
-export { fnLoadFile, fnPlay, fnPause, setFullscreen }
+export { fnLoadFile, fnPlay, fnPause, fnStop, setFullscreen }
