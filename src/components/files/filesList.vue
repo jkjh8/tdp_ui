@@ -1,11 +1,35 @@
 <script setup>
-import { format } from 'quasar'
+import { format, useQuasar } from 'quasar'
+import { api } from 'src/boot/axios'
 // components
 import DelayedTooltip from '/src/components/delayedTooltip'
+import DeleteFileDialog from '/src/components/dialogs/deleteFile'
 // composables
-import { files, avExt, filesCol } from '/src/composables/useFiles.js'
+import { files, avExt, filesCol, fnGetFiles } from '/src/composables/useFiles.js'
 import { fnLoadFile } from '/src/composables/usePlayer'
+
+const $q = useQuasar()
 const { humanStorageSize } = format
+
+const fnDeleteFile = (file) => {
+  $q.dialog({
+    component: DeleteFileDialog,
+    componentProps: {
+      current: file.base
+    }
+  }).onOk(async () => {
+    try {
+      $q.loading.show()
+      const r = await api.delete('/files', { params: { ...file } })
+      console.log(r)
+      await fnGetFiles()
+      $q.loading.hide()
+    } catch (error) {
+      $q.loading.hide()
+      console.error(error)
+    }
+  })
+}
 </script>
 
 <template>
@@ -13,7 +37,7 @@ const { humanStorageSize } = format
     table-header-class="bg-grey-3"
     :rows="files"
     :columns="filesCol"
-    :pagination="{ rouwPerPage: 0 }"
+    :pagination="{ rowsPerPage: 0 }"
     hide-pagination
     wrap-cells
   >
@@ -29,7 +53,7 @@ const { humanStorageSize } = format
           {{ humanStorageSize(props.row.size) }}
         </q-td>
         <q-td key="actions" :props="props">
-          <div>
+          <div class="q-gutter-x-sm">
             <q-btn
               round
               flat
@@ -39,6 +63,16 @@ const { humanStorageSize } = format
               @click="fnLoadFile(props.row)"
             >
               <DelayedTooltip msg="Load" />
+            </q-btn>
+            <q-btn
+              round
+              flat
+              icon="delete"
+              size="sm"
+              color="red"
+              @click="fnDeleteFile(props.row)"
+            >
+              <DelayedTooltip msg="Delete" />
             </q-btn>
           </div>
         </q-td>

@@ -28,6 +28,7 @@ const onRejected = (rejectedEntries) => {
       class="uploader"
       multiple
       :url="getUrl"
+      :field-name="(file) => encodeURIComponent(file.name)"
       color="blue-grey-8"
       accept="image/*, video/*, audio/*"
       @rejected="onRejected"
@@ -101,7 +102,14 @@ const onRejected = (rejectedEntries) => {
             <DelayedTooltip msg="Abrot Upload" />
           </q-btn>
           <!-- close dialog -->
-          <q-btn dense round flat color="blue-grey-2" icon="close" @click="onDialogOK">
+          <q-btn
+            dense
+            round
+            flat
+            color="blue-grey-2"
+            icon="close"
+            @click="onDialogOK"
+          >
             <DelayedTooltip msg="Close" />
           </q-btn>
         </div>
