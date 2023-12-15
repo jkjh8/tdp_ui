@@ -8,6 +8,8 @@ import IPaddressTab from 'src/components/setup/ipaddressTab'
 import WebPort from 'src/components/setup/webPortSetup'
 import ControlPort from 'src/components/setup/tpcPortSetup'
 import UDPPort from 'src/components/setup/udpPortSetup'
+import UDPSendPort from 'src/components/setup/udpSendPortSetup'
+import UDPSendAddress from 'src/components/setup/udpSendIPSetup'
 // import { playerState } from 'src/composables/usePlayerState'
 // composables
 import { api } from 'src/boot/axios'
@@ -46,6 +48,9 @@ async function updateValue() {
         <ControlPort />
         <!-- udp control port(ucp port) -->
         <UDPPort />
+        <!-- UDP Send Address -->
+        <UDPSendAddress />
+        <UDPSendPort />
         <!-- Audio Device Select -->
         <AudioDevices />
         <!-- show logo -->
