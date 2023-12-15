@@ -11,13 +11,17 @@ const initSocket = (address) => {
   })
   socket.on('pStatus', (status) => {
     updatePlayerStatus(status)
-    console.log('pStatus updated', pStatus.value)
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('pStatus updated', pStatus.value)
+    }
   })
   socket.on('pTimes', (time) => {
     updateTimes(time)
   })
   socket.on('connect', () => {
-    console.log(`connecting to socket.io id=${socket.id}`)
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(`connecting to socket.io id=${socket.id}`)
+    }
   })
 }
 

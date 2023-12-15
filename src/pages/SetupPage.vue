@@ -10,17 +10,8 @@ import ControlPort from 'src/components/setup/tpcPortSetup'
 import UDPPort from 'src/components/setup/udpPortSetup'
 import UDPSendPort from 'src/components/setup/udpSendPortSetup'
 import UDPSendAddress from 'src/components/setup/udpSendIPSetup'
-// import { playerState } from 'src/composables/usePlayerState'
 // composables
 import { api } from 'src/boot/axios'
-// import SelectAudioDevice from 'src/components/setup/selectAudioDevice'
-// import SetupShowLogo from 'src/components/setup/showLogo'
-// import SetupFullscreen from 'src/components/setup/startWithFullscreen'
-
-// onBeforeMount(async () => {
-//   const r = await api.get('/setup/updatesetup')
-//   playerState.value = { ...r.data.value }
-// })
 
 async function updateValue() {
   const r = await api.post('/setup', { ...pStatus.value })

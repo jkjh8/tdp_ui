@@ -30,7 +30,7 @@ const onRejected = (rejectedEntries) => {
       :url="getUrl"
       :field-name="(file) => encodeURIComponent(file.name)"
       color="blue-grey-8"
-      accept="image/*, video/*, audio/*"
+      accept=".mkv,image/*, video/*, audio/*"
       @rejected="onRejected"
     >
       <template #header="scope">

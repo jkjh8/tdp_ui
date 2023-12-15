@@ -1,10 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-// import { currentPath } from 'src/composables/useFiles'
-// import PlaylistHeader from 'src/components/playlist/headerPlaylist'
-// import ListPlaylist from 'src/components/playlist/listPlaylist'
-// import ListSimplePlaylist from 'src/components/playlist/simpleListPlaylist'
-// import TooltipDelay from 'src/components/tooltipDelay'
 </script>
 
 <template>

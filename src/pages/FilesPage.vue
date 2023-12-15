@@ -4,7 +4,6 @@ import { ref, onBeforeMount } from 'vue'
 // components
 import FilesHeader from 'src/components/files/FilesHeader'
 import FilesList from 'src/components/files/FilesList'
-// import simpleFileList from 'src/components/files/simpleListFiles'
 
 // composables
 import { fnGetFiles } from 'src/composables/useFiles'

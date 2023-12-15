@@ -5,13 +5,17 @@ let api, addr
 const devServerAddr = `http://${window.location.hostname}:3030`
 
 if (process.env.NODE_ENV !== 'production') {
-  console.log('Node ENV: DEV Mode')
-  console.log('Server Address: ' + devServerAddr)
   addr = devServerAddr
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('Node ENV: DEV Mode')
+    console.log('Server Address: ' + devServerAddr)
+  }
 } else {
   addr = window.location.origin
-  console.log('Node ENV: Production Mode')
-  console.log('Server Address: ' + addr)
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('Node ENV: Production Mode')
+    console.log('Server Address: ' + addr)
+  }
 }
 
 export default boot(({ app }) => {
