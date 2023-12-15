@@ -7,6 +7,7 @@ import { pStatus, updatePlayerStatus } from 'src/composables/useStatus.js'
 import IPaddressTab from 'src/components/setup/ipaddressTab'
 import WebPort from 'src/components/setup/webPortSetup'
 import ControlPort from 'src/components/setup/tpcPortSetup'
+import UDPPort from 'src/components/setup/udpPortSetup'
 // import { playerState } from 'src/composables/usePlayerState'
 // composables
 import { api } from 'src/boot/axios'
@@ -43,6 +44,8 @@ async function updateValue() {
         <WebPort />
         <!-- device control port(tcp port) -->
         <ControlPort />
+        <!-- udp control port(ucp port) -->
+        <UDPPort />
         <!-- Audio Device Select -->
         <AudioDevices />
         <!-- show logo -->
