@@ -13,7 +13,6 @@ import PlayerControls from 'components/controls/PlayerControls.vue'
 const router = useRouter()
 onBeforeMount(async () => {
   // initialize socket io
-  console.log('init socket io', addr)
   await initSocket(addr)
 })
 </script>
