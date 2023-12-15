@@ -9,7 +9,7 @@ import FilesList from 'src/components/files/FilesList'
 import { fnGetFiles } from 'src/composables/useFiles'
 
 onBeforeMount(async () => {
-  console.log(await fnGetFiles())
+  await fnGetFiles()
 })
 </script>
 
