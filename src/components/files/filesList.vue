@@ -4,6 +4,7 @@ import { api } from 'src/boot/axios'
 // components
 import DelayedTooltip from '/src/components/delayedTooltip'
 import DeleteFileDialog from '/src/components/dialogs/deleteFile'
+import RenameFile from '/src/components/dialogs/renameFile'
 // composables
 import { files, avExt, filesCol, fnGetFiles } from '/src/composables/useFiles.js'
 import { fnLoadFile } from '/src/composables/usePlayer'
@@ -21,6 +22,26 @@ const fnDeleteFile = (file) => {
     try {
       $q.loading.show()
       const r = await api.delete('/files', { params: { ...file } })
+      console.log(r)
+      await fnGetFiles()
+      $q.loading.hide()
+    } catch (error) {
+      $q.loading.hide()
+      console.error(error)
+    }
+  })
+}
+
+const fnRenameFile = (file) => {
+  $q.dialog({
+    component: RenameFile,
+    componentProps: {
+      current: file.base
+    }
+  }).onOk(async (newname) => {
+    try {
+      $q.loading.show()
+      const r = await api.post('/files/rename', { ...file, newname })
       console.log(r)
       await fnGetFiles()
       $q.loading.hide()
@@ -63,6 +84,16 @@ const fnDeleteFile = (file) => {
               @click="fnLoadFile(props.row)"
             >
               <DelayedTooltip msg="Load" />
+            </q-btn>
+            <q-btn
+              round
+              flat
+              icon="edit"
+              size="sm"
+              color="primary"
+              @click="fnRenameFile(props.row)"
+            >
+              <delayedTooltip msg="Rename" />
             </q-btn>
             <q-btn
               round
